@@ -1,0 +1,52 @@
+.intro {
+  position: fixed; inset: 0; z-index: 100; overflow: hidden;
+  display: grid; place-items: center; isolation: isolate;
+  background: radial-gradient(ellipse at 50% 48%, #163439 0%, #0b171d 43%, #05090e 78%);
+}
+.intro__halo {
+  position: absolute; width: min(72vw, 660px); aspect-ratio: 1;
+  border: 1px solid #27ddd41c; border-radius: 50%;
+  box-shadow: 0 0 100px #11ccc009, inset 0 0 90px #11ccc00a;
+}
+.intro__content { position: relative; text-align: center; width: min(88vw, 590px); }
+.intro__logo-wrap { perspective: 1000px; }
+.intro__logo {
+  display: block; width: min(100%, 62vh); height: auto; margin: auto;
+  opacity: 0; filter: drop-shadow(0 20px 24px #0009);
+}
+.intro__tagline { margin: 18px 0 22px; color: #a8c9cb; font-size: clamp(.65rem, 2vw, .78rem); letter-spacing: .38em; opacity: 0; }
+.intro__line { height: 2px; width: 150px; margin: auto; overflow: hidden; background: #ffffff12; }
+.intro__line span { display: block; height: 100%; background: #28ddd0; transform: scaleX(0); transform-origin: left; }
+.intro__skip {
+  position: absolute; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom));
+  color: #d1e3e5; border: 1px solid #ffffff26; background: #ffffff08;
+  border-radius: 999px; padding: 11px 19px; font: 600 .85rem 'Segoe UI', sans-serif; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.intro__skip span { margin-left: 14px; color: #28ddd0; }
+.intro__skip:hover { background: #28ddd019; border-color: #28ddd0; }
+.intro__skip:focus-visible { outline: 2px solid #28ddd0; outline-offset: 5px; }
+.intro__streaks { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.intro__streaks i {
+  position: absolute; top: calc(16% + var(--i) * 10%); left: -40%; width: 32%; height: 1px;
+  opacity: 0; background: linear-gradient(90deg, transparent, #2de6d577, transparent);
+}
+.intro--ready .intro__logo { animation: rr-logo-enter 3.8s cubic-bezier(.16,1,.3,1) both; }
+.intro--ready .intro__tagline { animation: rr-tagline 3.8s ease both; }
+.intro--ready .intro__line span { animation: rr-progress 3.8s linear both; }
+.intro--ready .intro__halo { animation: rr-halo 3.8s ease-out both; }
+.intro--ready .intro__streaks i { animation: rr-streak 1.1s ease-out calc(var(--i) * .12s) 2; }
+@keyframes rr-logo-enter {
+  0% { opacity: 0; transform: translateY(65px) translateZ(-280px) rotateX(12deg); }
+  24% { opacity: 1; transform: translateY(-5px) translateZ(12px) rotateX(0); }
+  36%, 82% { opacity: 1; transform: translateY(0) translateZ(0); }
+  100% { opacity: 0; transform: translateZ(80px); }
+}
+@keyframes rr-tagline { 0%, 22% { opacity: 0; transform: translateY(9px); } 40%, 82% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; } }
+@keyframes rr-progress { 0% { transform: scaleX(0); } 92%, 100% { transform: scaleX(1); } }
+@keyframes rr-halo { 0% { opacity: 0; transform: scale(.5); } 40% { opacity: 1; } 100% { opacity: 0; transform: scale(1.3); } }
+@keyframes rr-streak { 0% { opacity: 0; transform: translateX(0); } 20% { opacity: .8; } 100% { opacity: 0; transform: translateX(480%); } }
+@media (prefers-reduced-motion: reduce) {
+  .intro--ready .intro__logo, .intro--ready .intro__tagline { animation: none; opacity: 1; }
+  .intro__halo, .intro__streaks, .intro__line { display: none; }
+}

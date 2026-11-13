@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Blender: generar coche 3D",
+      "type": "process",
+      "command": "C:/Program Files/Blender Foundation/Blender 5.3/blender.exe",
+      "args": [
+        "--background",
+        "--python",
+        "${workspaceFolder}/blender/generate_car.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/blender"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Blender: generar carretera y utilería 3D",
+      "type": "process",
+      "command": "C:/Program Files/Blender Foundation/Blender 5.3/blender.exe",
+      "args": [
+        "--background",
+        "--python",
+        "${workspaceFolder}/blender/generate_desert_path.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/blender"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
