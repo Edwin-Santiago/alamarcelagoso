@@ -1,0 +1,7 @@
+node_modules/
+dist/
+artifacts/
+*.blend1
+.env
+.env.*
+!.env.example
